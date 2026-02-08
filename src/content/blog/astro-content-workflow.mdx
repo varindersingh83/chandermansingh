@@ -1,0 +1,28 @@
+---
+title: "Astro Content Workflow for Designers"
+description: "A lightweight publishing flow using MDX and content collections."
+date: 2025-12-02
+tags: ["Astro", "MDX", "Workflow"]
+draft: false
+---
+
+A designer portfolio needs publishing speed. Astro content collections keep the workflow predictable.
+
+## Why MDX works well
+
+MDX supports narrative text, code, and embedded components in one file. That makes technical case studies easier to publish.
+
+## Keep metadata strict
+
+Define schema with `zod` in `src/content/config.ts` so every post has title, date, and description.
+
+## Build confidence with static routes
+
+Generate blog detail pages using `getStaticPaths` and render content at build time.
+
+```ts
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+```

@@ -1,0 +1,19 @@
+---
+interface Props {
+  class?: string;
+  pressed?: boolean;
+  interactive?: boolean;
+}
+
+const { class: className = '', pressed = false, interactive = false } = Astro.props;
+---
+
+<div
+  class={`rounded-clayLg border border-white/45 bg-clay-card p-6 backdrop-blur-xl sm:p-8 ${
+    pressed ? 'shadow-clayPressed' : 'shadow-clayCard'
+  } ${
+    interactive ? 'transition-all duration-500 hover:-translate-y-2 hover:shadow-clayCardHover' : ''
+  } ${className}`}
+>
+  <slot />
+</div>

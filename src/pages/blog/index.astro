@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import ClayCard from '../../components/ClayCard.astro';
+import ClayButton from '../../components/ClayButton.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Blog | Chander Singh" description="Writing on design systems, UI craft, and frontend engineering.">
+  <Container class="pt-8 sm:pt-10">
+    <ClayCard class="space-y-4" interactive>
+      <p class="clay-heading text-xs font-black uppercase tracking-[0.2em] text-clay-muted">Journal</p>
+      <h1 class="text-4xl font-black tracking-tight sm:text-5xl" style={{ fontFamily: 'Nunito, sans-serif' }}>Blog</h1>
+      <p class="max-w-2xl text-base font-medium leading-relaxed text-clay-muted sm:text-lg">Git-backed MDX posts sorted by newest first.</p>
+    </ClayCard>
+
+    <div class="mt-8 grid gap-5 md:grid-cols-2">
+      {posts.map((post) => (
+        <ClayCard interactive class="group flex h-full flex-col gap-4 transition-all duration-500 hover:-translate-y-3">
+          <p class="text-sm font-bold uppercase tracking-wide text-clay-muted">
+            {post.data.date.toLocaleDateString('en-US', { dateStyle: 'medium' })}
+          </p>
+          <h2 class="clay-heading text-3xl font-extrabold leading-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>
+            <a class="transition-colors group-hover:text-clay-accent" href={`${base}/blog/${post.id}/`}>
+              {post.data.title}
+            </a>
+          </h2>
+          <p class="text-base font-medium leading-relaxed text-clay-muted">{post.data.description}</p>
+          <div class="mt-auto flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <span class="tag-pill">{tag}</span>
+            ))}
+          </div>
+          <ClayButton href={`${base}/blog/${post.id}/`} size="sm" variant="secondary">Read post</ClayButton>
+        </ClayCard>
+      ))}
+    </div>
+  </Container>
+</BaseLayout>
