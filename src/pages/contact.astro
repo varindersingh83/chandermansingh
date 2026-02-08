@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import ClayCard from '../components/ClayCard.astro';
+import ClayButton from '../components/ClayButton.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Contact | Chander Singh" description="Contact details and social links for collaboration.">
+  <Container class="pt-8 sm:pt-10">
+    <section class="grid gap-6 lg:grid-cols-2">
+      <ClayCard class="space-y-5" interactive>
+        <p class="clay-heading text-xs font-black uppercase tracking-[0.2em] text-clay-muted">Let&apos;s Build</p>
+        <h1 class="text-4xl font-black tracking-tight sm:text-5xl" style={{ fontFamily: 'Nunito, sans-serif' }}>Contact</h1>
+        <p class="max-w-xl text-base font-medium leading-relaxed text-clay-muted sm:text-lg">
+          For product design, frontend implementation, or design-system work, send an email and I&apos;ll reply with timeline and scope.
+        </p>
+
+        <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <ClayButton href="mailto:hello@example.com" size="lg">hello@example.com</ClayButton>
+          <ClayButton variant="secondary" href="https://dribbble.com/your-profile">Dribbble</ClayButton>
+          <ClayButton variant="secondary" href="https://www.linkedin.com/in/your-profile/">LinkedIn</ClayButton>
+          <ClayButton variant="secondary" href="https://github.com/your-username">GitHub</ClayButton>
+        </div>
+      </ClayCard>
+
+      <ClayCard pressed class="space-y-5" interactive>
+        <h2 class="text-3xl font-extrabold tracking-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>Quick Paths</h2>
+        <div class="space-y-3">
+          <a class="flex items-center justify-between rounded-clayMd bg-white/90 px-5 py-4 text-base font-bold shadow-clayButton transition-all duration-300 hover:-translate-y-1 hover:shadow-clayButtonHover" href={`${base}/gallery`}>
+            View recent gallery work
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="flex items-center justify-between rounded-clayMd bg-white/90 px-5 py-4 text-base font-bold shadow-clayButton transition-all duration-300 hover:-translate-y-1 hover:shadow-clayButtonHover" href={`${base}/blog`}>
+            Read technical notes
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <p class="text-sm font-medium leading-relaxed text-clay-muted">No contact form backend is used here. This page stays fully static for GitHub Pages.</p>
+      </ClayCard>
+    </section>
+  </Container>
+</BaseLayout>

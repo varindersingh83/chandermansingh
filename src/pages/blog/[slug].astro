@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import ClayCard from '../../components/ClayCard.astro';
+import ClayButton from '../../components/ClayButton.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: { post }
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title={`${post.data.title} | Blog`} description={post.data.description}>
+  <Container class="pt-8 sm:pt-10">
+    <ClayCard class="space-y-6" interactive>
+      <ClayButton href={`${base}/blog`} variant="secondary" size="sm">← Back to blog</ClayButton>
+
+      <header class="space-y-3">
+        <p class="text-sm font-bold uppercase tracking-wide text-clay-muted">
+          {post.data.date.toLocaleDateString('en-US', { dateStyle: 'medium' })}
+        </p>
+        <h1 class="text-4xl font-black tracking-tight sm:text-5xl" style={{ fontFamily: 'Nunito, sans-serif' }}>{post.data.title}</h1>
+        <p class="max-w-3xl text-base font-medium leading-relaxed text-clay-muted sm:text-lg">{post.data.description}</p>
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag: string) => <span class="tag-pill">{tag}</span>)}
+        </div>
+      </header>
+
+      <article class="prose max-w-none">
+        <Content />
+      </article>
+    </ClayCard>
+  </Container>
+</BaseLayout>

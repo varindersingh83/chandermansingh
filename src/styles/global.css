@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Nunito:wght@700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  @apply bg-clay-canvas text-clay-foreground antialiased;
+  font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  @apply relative z-10;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.clay-heading {
+  font-family: 'Nunito', sans-serif;
+}
+
+a {
+  @apply transition-colors;
+}
+
+.prose {
+  @apply prose-headings:text-clay-foreground prose-p:text-clay-muted prose-a:text-clay-accent prose-strong:text-clay-foreground;
+}
+
+.prose pre {
+  @apply rounded-clayMd border-0 bg-clay-recess shadow-clayPressed;
+}
+
+.tag-pill {
+  @apply inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs font-bold tracking-wide text-clay-foreground shadow-clayButton;
+}
+
+.clay-text-gradient {
+  background: linear-gradient(120deg, #332f3a 20%, #7c3aed 60%, #db2777 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

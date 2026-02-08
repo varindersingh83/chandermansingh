@@ -1,0 +1,29 @@
+---
+title: "Claymorphism in Production UI"
+description: "How to keep claymorphism practical and accessible in real products."
+date: 2026-01-10
+tags: ["UI", "CSS", "Design Systems"]
+draft: false
+---
+
+Claymorphism can make interfaces feel tactile, but it needs constraints to stay usable.
+
+## Start with subtle contrast
+
+Keep your surface and background close, then create depth with dual shadows.
+
+```css
+.card {
+  border-radius: 1.75rem;
+  background: #f4f5f8;
+  box-shadow: 10px 10px 20px #d2d5db, -10px -10px 20px #ffffff;
+}
+```
+
+## Add state clarity
+
+Use lifted shadows for default controls and inset shadows for pressed states. This reinforces interaction without heavy animation.
+
+## Keep typography crisp
+
+With soft surfaces, text contrast carries hierarchy. Use an ink color with enough luminance difference for readability.

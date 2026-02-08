@@ -1,0 +1,67 @@
+---
+import Container from './Container.astro';
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Contact' }
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const withBase = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path === '/' ? '' : path}` || '/';
+
+const itemClasses = (active: boolean) =>
+  `inline-flex min-h-11 items-center rounded-clayXs px-4 py-2 text-sm font-bold tracking-wide transition-all duration-200 ${
+    active
+      ? 'bg-white/90 text-clay-foreground shadow-clayPressed'
+      : 'bg-white/75 text-clay-muted shadow-clayButton hover:-translate-y-1 hover:text-clay-foreground hover:shadow-clayButtonHover'
+  }`;
+---
+
+<header class="sticky top-0 z-30">
+  <Container class="pb-1 pt-5 sm:pt-6">
+    <div class="rounded-[32px] border border-white/60 bg-white/60 p-3 shadow-clayDeep backdrop-blur-xl sm:rounded-[40px] sm:p-4">
+      <div class="flex items-center justify-between gap-4">
+        <a href={withBase('/')} class="clay-heading text-xl font-black tracking-tight sm:text-2xl">Chander Singh</a>
+
+        <nav class="hidden sm:block" aria-label="Primary">
+          <ul class="flex flex-wrap gap-2">
+            {navItems.map((item) => {
+              const normalized = item.href === '/' ? '/' : item.href.replace(/\/$/, '');
+              const active = currentPath === normalized;
+              return (
+                <li>
+                  <a href={withBase(item.href)} class={itemClasses(active)} aria-current={active ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <details class="relative sm:hidden">
+          <summary class="inline-flex h-11 cursor-pointer list-none items-center rounded-clayXs bg-white/80 px-4 text-sm font-bold shadow-clayButton marker:content-none">
+            Menu
+          </summary>
+          <div class="absolute right-0 mt-3 w-52 rounded-clayMd border border-white/70 bg-white/85 p-3 shadow-clayCard backdrop-blur-xl">
+            <ul class="space-y-2" aria-label="Mobile primary">
+              {navItems.map((item) => {
+                const normalized = item.href === '/' ? '/' : item.href.replace(/\/$/, '');
+                const active = currentPath === normalized;
+                return (
+                  <li>
+                    <a href={withBase(item.href)} class={`${itemClasses(active)} w-full justify-center`} aria-current={active ? 'page' : undefined}>
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </Container>
+</header>

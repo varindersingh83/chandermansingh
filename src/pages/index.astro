@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import ClayCard from '../components/ClayCard.astro';
+import ClayButton from '../components/ClayButton.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Designer Portfolio | Chander Singh"
+  description="A high-fidelity claymorphism portfolio featuring selected work, writing, and contact details."
+>
+  <Container class="pt-8 sm:pt-10">
+    <section class="grid gap-6 lg:grid-cols-3 lg:grid-rows-[minmax(280px,auto)_auto]">
+      <ClayCard class="relative overflow-hidden lg:col-span-2 lg:row-span-2" interactive>
+        <div class="relative z-10 max-w-3xl space-y-6">
+          <p class="clay-heading text-xs font-black uppercase tracking-[0.22em] text-clay-muted">Product Designer & Frontend Engineer</p>
+          <h1 class="clay-text-gradient text-5xl font-black leading-[1.08] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl" style={{ fontFamily: 'Nunito, sans-serif' }}>
+            Digital Clay,
+            <br />
+            Built to Feel Alive.
+          </h1>
+          <p class="max-w-2xl text-base font-medium leading-relaxed text-clay-muted sm:text-lg">
+            I design tactile interfaces with high-fidelity motion, expressive typography, and production-grade frontend craft.
+          </p>
+          <div class="flex flex-col gap-4 sm:flex-row">
+            <ClayButton href={`${base}/gallery`} size="lg">Explore Gallery</ClayButton>
+            <ClayButton href={`${base}/blog`} variant="secondary" size="lg">Read Blog</ClayButton>
+          </div>
+        </div>
+
+        <div class="pointer-events-none absolute -right-10 -top-6 hidden h-40 w-40 rounded-full bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] opacity-25 blur-sm sm:block animate-clay-float"></div>
+        <div class="pointer-events-none absolute -bottom-16 right-8 h-52 w-52 rounded-full bg-gradient-to-br from-[#F472B6] to-[#DB2777] opacity-20 blur-sm animate-clay-float-delayed"></div>
+      </ClayCard>
+
+      <ClayCard pressed class="space-y-4" interactive>
+        <p class="clay-heading text-xs font-black uppercase tracking-[0.2em] text-clay-muted">Availability</p>
+        <p class="text-4xl font-black text-clay-accent" style={{ fontFamily: 'Nunito, sans-serif' }}>Q1 2026</p>
+        <ul class="space-y-3 text-sm font-medium leading-relaxed text-clay-muted">
+          <li>Freelance product design</li>
+          <li>Design system consulting</li>
+          <li>Interactive marketing sites</li>
+        </ul>
+      </ClayCard>
+
+      <ClayCard class="grid grid-cols-2 gap-4" interactive>
+        <div class="rounded-[24px] bg-gradient-to-br from-[#93C5FD] to-[#0EA5E9] p-4 text-white shadow-clayButton">
+          <p class="clay-heading text-xs font-black uppercase tracking-widest">Projects</p>
+          <p class="mt-2 text-3xl font-black" style={{ fontFamily: 'Nunito, sans-serif' }}>42</p>
+        </div>
+        <div class="rounded-[24px] bg-gradient-to-br from-[#6EE7B7] to-[#10B981] p-4 text-white shadow-clayButton">
+          <p class="clay-heading text-xs font-black uppercase tracking-widest">Systems</p>
+          <p class="mt-2 text-3xl font-black" style={{ fontFamily: 'Nunito, sans-serif' }}>18</p>
+        </div>
+      </ClayCard>
+    </section>
+
+    <section class="mt-8 grid gap-6 md:grid-cols-3">
+      <ClayCard interactive class="space-y-3">
+        <p class="clay-heading text-2xl font-extrabold" style={{ fontFamily: 'Nunito, sans-serif' }}>Blog</p>
+        <p class="text-base font-medium leading-relaxed text-clay-muted">Writing about visual systems, CSS depth, and frontend workflows.</p>
+        <ClayButton href={`${base}/blog`} variant="ghost" size="sm">Go to blog</ClayButton>
+      </ClayCard>
+      <ClayCard interactive class="space-y-3">
+        <p class="clay-heading text-2xl font-extrabold" style={{ fontFamily: 'Nunito, sans-serif' }}>Gallery</p>
+        <p class="text-base font-medium leading-relaxed text-clay-muted">Selected product visuals and interaction studies.</p>
+        <ClayButton href={`${base}/gallery`} variant="ghost" size="sm">Go to gallery</ClayButton>
+      </ClayCard>
+      <ClayCard interactive class="space-y-3">
+        <p class="clay-heading text-2xl font-extrabold" style={{ fontFamily: 'Nunito, sans-serif' }}>Contact</p>
+        <p class="text-base font-medium leading-relaxed text-clay-muted">Open for collaborations, design direction, and frontend contracts.</p>
+        <ClayButton href={`${base}/contact`} variant="ghost" size="sm">Get in touch</ClayButton>
+      </ClayCard>
+    </section>
+  </Container>
+</BaseLayout>

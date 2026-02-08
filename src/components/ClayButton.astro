@@ -1,0 +1,40 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'default' | 'lg';
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const { href, variant = 'primary', size = 'default', class: className = '', type = 'button' } = Astro.props;
+
+const sizeClass = {
+  sm: 'h-11 px-4 text-sm',
+  default: 'h-14 px-6 text-base',
+  lg: 'h-16 px-7 text-lg'
+}[size];
+
+const variantClass = {
+  primary:
+    'bg-gradient-to-br from-[#A78BFA] to-[#7C3AED] text-white shadow-clayButton hover:shadow-clayButtonHover',
+  secondary: 'bg-white/90 text-clay-foreground shadow-clayButton hover:shadow-clayButtonHover',
+  outline:
+    'border-2 border-clay-accent/25 bg-transparent text-clay-accent shadow-none hover:border-clay-accent hover:bg-clay-accent/5',
+  ghost: 'bg-transparent text-clay-foreground shadow-none hover:bg-clay-accent/10 hover:text-clay-accent'
+}[variant];
+
+const classes = `inline-flex w-full items-center justify-center rounded-clayXs font-bold tracking-wide transition-all duration-200 sm:w-auto ${sizeClass} ${variantClass} hover:-translate-y-1 active:scale-[0.92] active:shadow-clayPressed focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-clay-accent/30 focus-visible:ring-offset-2 focus-visible:ring-offset-clay-canvas ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button class={classes} type={type}>
+      <slot />
+    </button>
+  )
+}
