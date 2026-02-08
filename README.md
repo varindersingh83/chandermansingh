@@ -46,16 +46,16 @@ npm run preview
 
 Edit `astro.config.mjs`:
 
-- `site`: set to `https://<username>.github.io` (default in repo: `https://username.github.io`)
-- `base`: set to `/<repo>` (default in repo: `/repo`)
+- `site`: set to `https://<username>.github.io` (for this repo: `https://varindersingh83.github.io`)
+- `base`: set to `/<repo>` (for this repo: `/chandermansingh`)
 
 Example:
 
 ```js
-site: 'https://janedoe.github.io',
-base: '/portfolio-site'
+site: 'https://varindersingh83.github.io',
+base: '/chandermansingh'
 ```
 
 These values are required so links and assets resolve at:
 
-`https://<username>.github.io/<repo>/`
+`https://varindersingh83.github.io/chandermansingh/`
