@@ -4,8 +4,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://username.github.io',
-  base: '/repo',
+  site: 'https://varindersingh83.github.io',
+  base: '/chandermansingh',
   integrations: [tailwind(), mdx(), sitemap()],
   markdown: {
     syntaxHighlight: 'prism'
